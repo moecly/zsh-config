@@ -14,9 +14,17 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
-# 自动建议（根据历史记录）
-zinit ice wait lucid
+# 自动建议（根据历史命令智能补全）
 zinit light zsh-users/zsh-autosuggestions
+# 历史记录配置
+HISTFILE=~/.zsh_history     # 历史记录文件位置
+HISTSIZE=10000              # 内存中保存的历史条数
+SAVEHIST=10000              # 写入文件的历史条数
+setopt INC_APPEND_HISTORY   # 新命令立即追加到历史文件
+setopt SHARE_HISTORY        # 会话间共享历史记录
+setopt EXTENDED_HISTORY     # 记录命令执行时间
+setopt HIST_IGNORE_DUPS     # 忽略重复命令
+setopt HIST_IGNORE_SPACE    # 忽略以空格开头的命令       
 
 # 语法高亮
 zinit ice wait lucid
