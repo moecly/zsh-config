@@ -10,6 +10,9 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
+autoload -Uz compinit
+compinit -u
+
 # 主题
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
@@ -37,6 +40,9 @@ zinit light zsh-users/zsh-completions
 # 快速目录跳转
 zinit ice wait lucid
 zinit light agkozak/zsh-z
+
+# fzf Tab 补全增强（支持模糊搜索）
+zinit light Aloxaf/fzf-tab
 
 # Git 补全
 zinit snippet OMZP::git
