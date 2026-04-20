@@ -30,15 +30,12 @@ setopt HIST_IGNORE_DUPS     # 忽略重复命令
 setopt HIST_IGNORE_SPACE    # 忽略以空格开头的命令       
 
 # 语法高亮
-zinit ice wait lucid
 zinit light zsh-users/zsh-syntax-highlighting
 
 # 补全增强
-zinit ice wait lucid
 zinit light zsh-users/zsh-completions
 
 # 快速目录跳转
-zinit ice wait lucid
 zinit light agkozak/zsh-z
 
 # fzf Tab 补全增强（支持模糊搜索）
