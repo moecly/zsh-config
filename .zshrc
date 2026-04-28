@@ -36,13 +36,62 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 
 # 快速目录跳转
-zinit light agkozak/zsh-z
+# zinit light agkozak/zsh-z
 
 # fzf Tab 补全增强（支持模糊搜索）
 zinit light Aloxaf/fzf-tab
 
 # Git 补全
 zinit snippet OMZP::git
+
+# 现代化命令别名
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza'
+  alias ll='eza -l'
+  alias la='eza -la'
+  alias lt='eza -T'
+fi
+
+if command -v bat >/dev/null 2>&1; then
+  alias cat='bat'
+fi
+
+if command -v trash >/dev/null 2>&1; then
+  alias rm='trash'
+fi
+
+if command -v fd >/dev/null 2>&1; then
+  alias find='fd'
+fi
+
+if command -v rg >/dev/null 2>&1; then
+  alias grep='rg'
+fi
+
+if command -v btop >/dev/null 2>&1; then
+  alias top='btop'
+fi
+
+if command -v dust >/dev/null 2>&1; then
+  alias du='dust'
+fi
+
+if command -v duf >/dev/null 2>&1; then
+  alias df='duf'
+fi
+
+if command -v procs >/dev/null 2>&1; then
+  alias ps='procs'
+fi
+
+if command -v gping >/dev/null 2>&1; then
+  alias ping='gping'
+fi
+
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+  alias cd='z'
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
