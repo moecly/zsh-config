@@ -56,8 +56,9 @@ if command -v bat >/dev/null 2>&1; then
   alias cat='bat'
 fi
 
-if command -v trash >/dev/null 2>&1; then
-  alias rm='trash'
+if command -v trash-put >/dev/null 2>&1; then
+  alias rm='trash-put'
+  compdef _rm trash-put
 fi
 
 if command -v fd >/dev/null 2>&1; then
