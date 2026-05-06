@@ -16,6 +16,8 @@ compinit -u
 # 主题
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # 自动建议（根据历史命令智能补全）
 zinit light zsh-users/zsh-autosuggestions
@@ -94,5 +96,29 @@ if command -v zoxide >/dev/null 2>&1; then
   alias cd='z'
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Btrfs balance 快捷命令
+# 用法: btrfs-balance [dusage] [musage] [path]
+btrfs-balance() {
+  sudo btrfs balance start -dusage=${1:-10} -musage=${2:-10} ${3:-/}
+}
+
+# Btrfs 子卷列表（过滤 .snapshots）
+alias btrfs-list='sudo btrfs subvolume list / | rg -v ".snapshots"'
+
+# Btrfs 创建子卷
+btrfs-create() {
+  sudo btrfs subvolume create "$@"
+}
+
+# Btrfs 删除子卷
+btrfs-delete() {
+  sudo btrfs subvolume delete "$@"
+}
+
+# Btrfs 创建快照
+btrfs-snapshot() {
+  sudo btrfs subvolume snapshot "$@"
+}
+
+
