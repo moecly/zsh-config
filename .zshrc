@@ -103,8 +103,10 @@ btrfs-balance() {
   sudo btrfs balance start -dusage=${1:-10} -musage=${2:-10} ${3:-/}
 }
 
-# Btrfs 子卷列表（过滤 .snapshots）
-alias btrfs-list='sudo btrfs subvolume list / | rg -v ".snapshots"'
+# Btrfs 子卷列表
+btrfs-list() {
+  sudo btrfs subvolume list "$@"
+}
 
 # Btrfs 创建子卷
 btrfs-create() {
@@ -119,6 +121,21 @@ btrfs-delete() {
 # Btrfs 创建快照
 btrfs-snapshot() {
   sudo btrfs subvolume snapshot "$@"
+}
+
+# Btrfs 显示子卷详细信息
+btrfs-show() {
+  sudo btrfs subvolume show "$@"
+}
+
+# Btrfs 发送子卷快照
+btrfs-send() {
+  sudo btrfs send "$@"
+}
+
+# Btrfs 接收子卷快照
+btrfs-receive() {
+  sudo btrfs receive "$@"
 }
 
 
