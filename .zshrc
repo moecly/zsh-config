@@ -143,4 +143,9 @@ btrfs-usage() {
   sudo btrfs fi usage "$@"
 }
 
+# 修改文件所有者为当前用户
+chown-me() {
+  sudo chown $USER:$USER "$@"
+}
+
 
