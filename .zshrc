@@ -105,7 +105,7 @@ btrfs-balance() {
 
 # Btrfs 子卷列表
 btrfs-list() {
-  sudo btrfs subvolume list "$@"
+  sudo btrfs subvolume list "$@" | rg -v ".snapshot"
 }
 
 # Btrfs 创建子卷
