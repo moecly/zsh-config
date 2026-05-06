@@ -138,4 +138,9 @@ btrfs-receive() {
   sudo btrfs receive "$@"
 }
 
+# Btrfs 文件系统使用情况
+btrfs-usage() {
+  sudo btrfs fi usage "$@"
+}
+
 
