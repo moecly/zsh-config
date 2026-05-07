@@ -148,6 +148,11 @@ btrfs-defrag() {
   sudo btrfs filesystem defragment -r -czstd -vv --step "$@"
 }
 
+# Btrfs maintenance 定时任务刷新
+btrfs-refresh() {
+  sudo /usr/share/btrfsmaintenance/btrfsmaintenance-refresh-cron.sh "$@"
+}
+
 # 修改文件所有者为当前用户
 chown-me() {
   sudo chown $USER:$USER "$@"
