@@ -100,7 +100,7 @@ fi
 # Btrfs balance 快捷命令
 # 用法: btrfs-balance [dusage] [musage] [path]
 btrfs-balance() {
-  sudo btrfs balance start -dusage=${1:-10} -musage=${2:-10} ${3:-/}
+  sudo btrfs balance start -dusage=${1:-5} -musage=${2:-5} ${3:-/}
 }
 
 # Btrfs 子卷列表
