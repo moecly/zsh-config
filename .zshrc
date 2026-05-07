@@ -143,9 +143,19 @@ btrfs-usage() {
   sudo btrfs fi usage "$@"
 }
 
+# Btrfs 文件系统碎片整理
+btrfs-defrag() {
+  sudo btrfs filesystem defragment "$@"
+}
+
 # 修改文件所有者为当前用户
 chown-me() {
   sudo chown $USER:$USER "$@"
+}
+
+# rsync 带进度显示复制
+rscp() {
+  sudo rsync -avP --info=progress2 "$@"
 }
 
 
