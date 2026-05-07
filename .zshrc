@@ -145,7 +145,7 @@ btrfs-usage() {
 
 # Btrfs 文件系统碎片整理
 btrfs-defrag() {
-  sudo btrfs filesystem defragment "$@"
+  sudo btrfs filesystem defragment -r -czstd -vv --step "$@"
 }
 
 # 修改文件所有者为当前用户
