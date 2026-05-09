@@ -163,4 +163,4 @@ rscp() {
   sudo rsync -avP --info=progress2 "$@"
 }
 
-
+export EDITOR=nvim
