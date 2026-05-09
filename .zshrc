@@ -48,6 +48,8 @@ zinit snippet OMZP::git
 
 export EDITOR=nvim
 
+bindkey -v
+
 # 现代化命令别名
 if command -v eza >/dev/null 2>&1; then
   alias ls='eza'
@@ -173,4 +175,3 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
-
