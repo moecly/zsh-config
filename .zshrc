@@ -46,6 +46,8 @@ zinit light Aloxaf/fzf-tab
 # Git 补全
 zinit snippet OMZP::git
 
+export EDITOR=nvim
+
 # 现代化命令别名
 if command -v eza >/dev/null 2>&1; then
   alias ls='eza'
@@ -163,4 +165,12 @@ rscp() {
   sudo rsync -avP --info=progress2 "$@"
 }
 
-export EDITOR=nvim
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
