@@ -48,7 +48,24 @@ zinit snippet OMZP::git
 
 export EDITOR=nvim
 
-bindkey -v
+# --- Vi Mode 增强配置 ---
+bindkey -v  # 你配置里已有的，确保在这些自定义绑定之前
+
+# 1. 即使在 Vi 模式下，也找回你习惯的 Ctrl 组合键（插入模式下有效）
+bindkey -M viins '^P' up-line-or-history
+bindkey -M viins '^N' down-line-or-history
+bindkey -M viins '^F' forward-char
+bindkey -M viins '^B' backward-char
+bindkey -M viins '^A' beginning-of-line
+bindkey -M viins '^E' end-of-line
+
+# 2. 在命令模式（Normal Mode）下，让 j/k 支持搜索当前已输入的开头
+# 比如输入 'vim' 按 k，只会匹配 vim 开头的历史
+bindkey -M vicmd 'k' up-line-or-beginning-search
+bindkey -M vicmd 'j' down-line-or-beginning-search
+
+# 3. 减少按 Esc 后的延迟（默认延迟会导致切换模式卡顿）
+export KEYTIMEOUT=1
 
 # 现代化命令别名
 if command -v eza >/dev/null 2>&1; then
