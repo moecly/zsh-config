@@ -181,7 +181,7 @@ chown-me() {
 
 # rsync 带进度显示复制
 rscp() {
-  sudo rsync -avP --info=progress2 "$@"
+  sudo rsync -avhP --info=progress2 "$@"
 }
 
 function y() {
