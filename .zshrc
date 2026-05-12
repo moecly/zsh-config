@@ -10,14 +10,13 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
-autoload -Uz compinit
-compinit -u
-
 # 主题
-zinit ice depth=1
-zinit light romkatv/powerlevel10k
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# 使用 zinit 安装 Starship (替代 p10k)
+zinit ice as"command" from"gh-r"
+zinit light starship/starship
+export STARSHIP_CONFIG=~/.moecly_conf/zsh/starship.toml
+# 初始化 Starship
+eval "$(starship init zsh)"
 
 # 自动建议（根据历史命令智能补全）
 zinit light zsh-users/zsh-autosuggestions
@@ -44,7 +43,10 @@ zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab
 
 # Git 补全
-zinit snippet OMZP::git
+#zinit snippet OMZP::git
+
+autoload -Uz compinit
+compinit -u
 
 export EDITOR=nvim
 
@@ -116,7 +118,6 @@ if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
   alias cd='z'
 fi
-
 
 # Btrfs balance 快捷命令
 # 用法: btrfs-balance [dusage] [musage] [path]
