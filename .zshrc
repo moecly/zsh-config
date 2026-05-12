@@ -198,3 +198,10 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+upmirrors() {
+    local country=${1:-China}
+    echo "🔍 Finding the fastest mirrors for $country..."
+    sudo reflector --country "$country" --protocol https --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
+    echo "✅ Mirrorlist updated successfully!"
+}
