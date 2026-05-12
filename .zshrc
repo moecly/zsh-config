@@ -184,6 +184,11 @@ rscp() {
   sudo rsync -avhP --info=progress2 "$@"
 }
 
+# rsync 同步
+rscpd() {
+  sudo rsync -avhP --delete-during --info=progress2 "$@"
+}
+
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
 	yazi "$@" --cwd-file="$tmp"
