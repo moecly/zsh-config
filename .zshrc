@@ -10,6 +10,33 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
+# --- Vi Mode 增强配置 ---
+bindkey -v  # 你配置里已有的，确保在这些自定义绑定之前
+
+# 1. 即使在 Vi 模式下，也找回你习惯的 Ctrl 组合键（插入模式下有效）
+bindkey -M viins '^P' up-line-or-history
+bindkey -M viins '^N' down-line-or-history
+bindkey -M viins '^F' forward-char
+bindkey -M viins '^B' backward-char
+bindkey -M viins '^A' beginning-of-line
+bindkey -M viins '^E' end-of-line
+
+# 1. 告诉 Zsh 从扩展库中加载这两个函数
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+
+# 2. 将它们转化为可用的 widget
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+# 3. 在命令模式（Normal Mode）下，让 j/k 支持搜索当前已输入的开头
+# 比如输入 'vim' 按 k，只会匹配 vim 开头的历史
+bindkey -M vicmd 'k' up-line-or-beginning-search
+bindkey -M vicmd 'j' down-line-or-beginning-search
+
+# 4. 减少按 Esc 后的延迟（默认延迟会导致切换模式卡顿）
+export KEYTIMEOUT=1
+
 # 主题
 # 使用 zinit 安装 Starship (替代 p10k)
 zinit ice as"command" from"gh-r"
@@ -49,25 +76,6 @@ autoload -Uz compinit
 compinit -u
 
 export EDITOR=nvim
-
-# --- Vi Mode 增强配置 ---
-bindkey -v  # 你配置里已有的，确保在这些自定义绑定之前
-
-# 1. 即使在 Vi 模式下，也找回你习惯的 Ctrl 组合键（插入模式下有效）
-bindkey -M viins '^P' up-line-or-history
-bindkey -M viins '^N' down-line-or-history
-bindkey -M viins '^F' forward-char
-bindkey -M viins '^B' backward-char
-bindkey -M viins '^A' beginning-of-line
-bindkey -M viins '^E' end-of-line
-
-# 2. 在命令模式（Normal Mode）下，让 j/k 支持搜索当前已输入的开头
-# 比如输入 'vim' 按 k，只会匹配 vim 开头的历史
-bindkey -M vicmd 'k' up-line-or-beginning-search
-bindkey -M vicmd 'j' down-line-or-beginning-search
-
-# 3. 减少按 Esc 后的延迟（默认延迟会导致切换模式卡顿）
-export KEYTIMEOUT=1
 
 # 现代化命令别名
 if command -v eza >/dev/null 2>&1; then
