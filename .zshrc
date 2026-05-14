@@ -69,6 +69,26 @@ zinit light zsh-users/zsh-completions
 # fzf Tab 补全增强（支持模糊搜索）
 zinit light Aloxaf/fzf-tab
 
+# fzf 快捷键：Ctrl+T 插入路径 / Ctrl+R 搜索历史 / Alt+C 跳转目录
+source ~/.moecly_conf/zsh/fzf-key-bindings.zsh
+# fzf 模糊补全：输入 ** 按 Tab 触发 fzf 搜索
+source ~/.moecly_conf/zsh/fzf-completion.zsh
+
+# Zoxide 快速展开：弹出 fzf 从 zoxide 数据库选择路径并插入到光标位置
+zoxide-expand-word() {
+  setopt localoptions pipefail no_aliases 2> /dev/null
+  local word="${LBUFFER##* }"
+  local dir
+  dir=$(zoxide query -l -- "$word" 2>/dev/null | fzf --reverse --height 40% --scheme=path --query="$word")
+  if [[ -n "$dir" ]]; then
+    LBUFFER="${LBUFFER%$word}${(q)dir} "
+  fi
+  zle reset-prompt
+}
+zle -N zoxide-expand-word
+bindkey -M viins '\ee' zoxide-expand-word
+bindkey -M vicmd '\ee' zoxide-expand-word
+
 # Git 补全
 #zinit snippet OMZP::git
 
