@@ -147,6 +147,10 @@ if command -v zoxide >/dev/null 2>&1; then
   alias cd='z'
 fi
 
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+
 # Btrfs balance 快捷命令
 # 用法: btrfs-balance [dusage] [musage] [path]
 btrfs-balance() {
@@ -233,3 +237,4 @@ upmirrors() {
     sudo reflector --country "$country" --protocol https --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
     echo "✅ Mirrorlist updated successfully!"
 }
+
