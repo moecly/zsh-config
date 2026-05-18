@@ -114,14 +114,6 @@ if command -v trash-put >/dev/null 2>&1; then
   compdef _rm trash-put
 fi
 
-if command -v fd >/dev/null 2>&1; then
-  alias find='fd'
-fi
-
-if command -v rg >/dev/null 2>&1; then
-  alias grep='rg'
-fi
-
 if command -v btop >/dev/null 2>&1; then
   alias top='btop'
 fi
