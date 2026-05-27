@@ -114,6 +114,7 @@ if command -v trash-put >/dev/null 2>&1; then
   compdef _rm trash-put
 fi
 
+
 if command -v btop >/dev/null 2>&1; then
   alias top='btop'
 fi
@@ -141,6 +142,10 @@ fi
 
 if command -v direnv >/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
+fi
+
+if command -v just >/dev/null 2>&1; then
+  alias j='just --choose'
 fi
 
 # Btrfs balance 快捷命令
