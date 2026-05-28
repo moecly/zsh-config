@@ -145,7 +145,12 @@ if command -v direnv >/dev/null 2>&1; then
 fi
 
 if command -v just >/dev/null 2>&1; then
-  alias j='just --choose'
+  alias j='just'
+  alias jc='just --choose'
+fi
+
+if command -v plocate >/dev/null 2>&1; then
+  alias p='plocate'
 fi
 
 # Btrfs balance 快捷命令
